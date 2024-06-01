@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logout Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="/styles/styles_logout.css" />
+    <script src="../public/js/logout"></script>
+  </head>
+
+  <body>
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+      <p>Are you sure you want to log out?</p>
+      <button id="confirm">Yes</button>
+      <button id="cancel">Cancel</button>
+    </div>
+  </body>
+  <script>
+    // Отображение модального окна
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("modal").style.display = "block"; 
+    // Обработчик события для кнопки подтверждения
+    document.getElementById("confirm").addEventListener("click", function () {
+    // Отправка запроса на сервер для завершения сеанса 
+    window.location.href = "/"; }); 
+    // Обработчик события для кнопки отмены
+    document.getElementById("cancel").addEventListener("click", function () { 
+    //Закрытие модального окна 
+    document.getElementById("overlay").style.display = "none"; 
+    document.getElementById("modal").style.display = "none"; 
+    // Возврат пользователя на предыдущую страницу 
+    window.history.back(); });
+
+  </script>
+</html>

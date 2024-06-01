@@ -1,0 +1,91 @@
+<html lang="en">
+
+  <head>
+    <title>Today's Diary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;500&family=Sofia+Sans:wght@300;500;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="/styles/styles_today.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/styles_general.css" />
+    <script src="/js/script.js"></script>
+    <script src="/js/entries.js"></script>
+  </head>
+
+  <body>
+    <div class="left-menu">
+      <h2><a href="/profile"><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            fill="currentColor"
+            class="bi bi-gear-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
+            />
+          </svg></a></h2>
+      <br />
+      <p><a href="#">Today</a></p>
+      <p><a href="/index">All posts</a></p>
+    </div>
+    <div class="content">
+      <h1>Today is {{today}}</h1>
+      <h2>Today's posts:</h2>
+      <div class="entries-container">
+        {{#if entries.length}}
+          {{#each entries}}
+            <div class="entry">
+              <pre class="entry-text">{{text}}</pre>
+              {{#if image}}
+                <img src="{{image}}" alt="Image" class="entry-image" />
+              {{/if}}
+              <div class="entry-menu">
+                <p class="entry-time">{{currentTime}}</p>
+                <div class="entry-menu-inner">
+                  <button class="edit-button">Edit</button>
+                  <button class="delete-button">Delete</button>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        {{else}}
+          <p>No posts for today.</p>
+        {{/if}}
+      </div>
+
+      <div class="formdiv">
+        <button id="emoji-button" onclick="toggleEmojiMenu()">Select Emoji</button>
+        <div id="emoji-menu" class="emoji-menu" style="display: none;">
+          <button class="emoji" onclick="addEmoji('😀')">😀</button>
+          <button class="emoji" onclick="addEmoji('😊')">😊</button>
+          <button class="emoji" onclick="addEmoji('👍')">👍</button>
+          <button class="emoji" onclick="addEmoji('❤️')">❤️</button>
+        </div>
+        <form
+          action="/submit-today"
+          id="entry-form"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <textarea
+            name="text"
+            rows="7"
+            cols="50"
+            id="entry-textarea"
+            required
+            placeholder="What's new?"
+          ></textarea>
+          <br />
+          <input type="file" name="image" accept="image/*" />
+          <br /><br />
+          <input type="submit" value="Post" id="inputsub" />
+        </form>
+      </div>
+    </div>
+  </body>
+
+</html>

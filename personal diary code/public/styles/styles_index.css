@@ -1,0 +1,33 @@
+.entries-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-height: calc(100vh - 430px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 70px;
+}
+
+.formdiv {
+  position: fixed;
+  bottom: 0;
+  width: 76%;
+  background-color: #8f7070;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+#entry-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
